@@ -1,6 +1,6 @@
 {
   "name": "BootstrapAngularAdminWebApp",
-  "version": "2.2.0",
+  "version": "2.2.1-0",
   "description": "Admin web application template with Bootstrap 3 and AngularJS.",
   "scripts": {
     "start": "node node_modules/http-server/bin/http-server -o"
