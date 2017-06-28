@@ -1,16 +1,15 @@
 +function ($) {
 
   $(function(){
-      //默认激活选项
-      var hash = window.location.href;
-      if(typeof(hash.match(/http:\/\/(.*?)\/(.*)/)[2]) != 'undefined'){
-          //匹配后缀有数字的链接(如：编辑/删除 /admin/news/edit/1)，返回/admin/news
-          var operation = hash.match(/http:\/\/(.*?)\/(.*)\/(.*)\/(\d+)$/);
-          if(typeof(operation) != 'undefined' && operation){
-              $url = operation[2];
-          }else{
-              $url = hash.match(/http:\/\/(.*?)\/(.*)/)[2];
+      //菜单选中状态防刷新
+      var hash = window.location.pathname;
+      if(hash.length > 1){
+          //匹配搜索链接
+          if(hash.lastIndexOf('?') > 0){
+              hash = hash.substr(0,window.location.href.lastIndexOf('?'));
           }
+          //替换/admin/notice/add/5为/admin/notice
+          $url = hash.replace(/\/([^/]+)\/(\d+)$/,'');
           var $this = $("[ui-nav] a[href$='"+$url+"']");
           $this.is('a') || ($this = $this.closest('a'));
           $this.parents('ul').parent().toggleClass('active');
